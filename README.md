@@ -15,7 +15,7 @@ I have built a model consisting of 5 convolutions and 5 max pooling layers, with
 ```python
 model.summary()
 ```
-Model: "sequential_2"
+![alt text](img/model.PNG "Model")
 
 ## Accuracy
 I achieved the training accuracy of 96.47%.
