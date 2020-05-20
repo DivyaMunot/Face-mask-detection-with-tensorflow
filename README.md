@@ -24,3 +24,4 @@ I achieved the training accuracy of 96.47%.
 ![loss](Loss.png "Loss")
 
 Find the code here:
+https://github.com/DivyaMunot/Face-mask-detection-with-tensorflow/blob/master/face_mask_detect.py
