@@ -12,17 +12,17 @@ import matplotlib.image  as mpimg
 import matplotlib.pyplot as plt
 
 #printing the total number of images in the dataset
-print(len(os.listdir('/content/drive/My Drive/Colab Notebooks/dataset/with_mask')))
-print(len(os.listdir('/content/drive/My Drive/Colab Notebooks/dataset/without_mask')))
+print(len(os.listdir('/dataset/with_mask')))
+print(len(os.listdir('/dataset/without_mask')))
 
 # os.mkdir to create the directories
 try:
-  os.mkdir('/content/drive/My Drive/Colab Notebooks/dataset/training')
-  os.mkdir('/content/drive/My Drive/Colab Notebooks/dataset/training/with-mask')
-  os.mkdir('/content/drive/My Drive/Colab Notebooks/dataset/training/without-mask')
-  os.mkdir('/content/drive/My Drive/Colab Notebooks/dataset/testing')
-  os.mkdir('/content/drive/My Drive/Colab Notebooks/dataset/testing/with-mask')
-  os.mkdir('/content/drive/My Drive/Colab Notebooks/dataset/testing/without-mask')
+  os.mkdir('/dataset/training')
+  os.mkdir('/dataset/training/with-mask')
+  os.mkdir('/dataset/training/without-mask')
+  os.mkdir('/dataset/testing')
+  os.mkdir('/dataset/testing/with-mask')
+  os.mkdir('/dataset/testing/without-mask')
 except OSError:
     print('error')
 
@@ -55,12 +55,12 @@ def split_data(SOURCE, TRAINING, TESTING, SPLIT_SIZE):
 	    shutil.copyfile(src, dst)
 
 
-WMASK_SOURCE_DIR = '/content/drive/My Drive/Colab Notebooks/dataset/with_mask/'
-WOMASK_SOURCE_DIR = '/content/drive/My Drive/Colab Notebooks/dataset/without_mask/'
-TRAINING_WMASK_DIR = '/content/drive/My Drive/Colab Notebooks/dataset/training/with-mask/'
-TRAINING_WOMASK_DIR = '/content/drive/My Drive/Colab Notebooks/dataset/training/without-mask/'
-TESTING_WMASK_DIR = '/content/drive/My Drive/Colab Notebooks/dataset/testing/with-mask/'
-TESTING_WOMASK_DIR = '/content/drive/My Drive/Colab Notebooks/dataset/testing/without-mask/'
+WMASK_SOURCE_DIR = '/dataset/with_mask/'
+WOMASK_SOURCE_DIR = '/dataset/without_mask/'
+TRAINING_WMASK_DIR = '/dataset/training/with-mask/'
+TRAINING_WOMASK_DIR = '/dataset/training/without-mask/'
+TESTING_WMASK_DIR = '/dataset/testing/with-mask/'
+TESTING_WOMASK_DIR = '/dataset/testing/without-mask/'
 
 # 90% training data and 10% testing data
 split_size = .9     
@@ -68,10 +68,10 @@ split_data(WMASK_SOURCE_DIR, TRAINING_WMASK_DIR, TESTING_WMASK_DIR, split_size)
 split_data(WOMASK_SOURCE_DIR, TRAINING_WOMASK_DIR, TESTING_WOMASK_DIR, split_size)
 
 # printing the len of the directories
-print(len(os.listdir('/content/drive/My Drive/Colab Notebooks/dataset/training/with-mask/')))
-print(len(os.listdir('/content/drive/My Drive/Colab Notebooks/dataset/training/without-mask/')))
-print(len(os.listdir('/content/drive/My Drive/Colab Notebooks/dataset/testing/with-mask/')))
-print(len(os.listdir('/content/drive/My Drive/Colab Notebooks/dataset/testing/without-mask/')))
+print(len(os.listdir('/dataset/training/with-mask/')))
+print(len(os.listdir('/dataset/training/without-mask/')))
+print(len(os.listdir('/dataset/testing/with-mask/')))
+print(len(os.listdir('/dataset/testing/without-mask/')))
 
 # model
 model = tf.keras.models.Sequential([
@@ -101,7 +101,7 @@ model.compile(optimizer=RMSprop(lr=0.001), loss='binary_crossentropy', metrics=[
 model.summary()
 
 
-TRAINING_DIR = '/content/drive/My Drive/Colab Notebooks/dataset/training'
+TRAINING_DIR = '/dataset/training'
 train_datagen = ImageDataGenerator(
     rescale=1 / 255,
     rotation_range=40,
@@ -119,7 +119,7 @@ train_generator = train_datagen.flow_from_directory(
     target_size=(150, 150)
 )
 
-VALIDATION_DIR = '/content/drive/My Drive/Colab Notebooks/dataset/testing'
+VALIDATION_DIR = '/dataset/testing'
 validation_datagen = ImageDataGenerator(
     rescale=1 / 255,
     rotation_range=40,
