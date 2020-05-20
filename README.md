@@ -15,9 +15,12 @@ I have built a model consisting of 5 convolutions and 5 max pooling layers, with
 ```python
 model.summary()
 ```
-![alt text](img/model.PNG "Model")
+![alt text](model.PNG "Model")
 
 ## Accuracy
 I achieved the training accuracy of 96.47%.
 
 ![accuracy](Accuracy.png "Accuracy")
+![loss](Loss.png "Loss")
+
+Find the code here:
