@@ -20,4 +20,4 @@ model.summary()
 ## Accuracy
 I achieved the training accuracy of 96.47%.
 
-![accuracy](accuracy.png "Accuracy")
+![accuracy](Accuracy.png "Accuracy")
