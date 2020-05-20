@@ -1,4 +1,4 @@
-#importing all the necessary libraries
+# importing all the necessary libraries
 import os
 import random
 import shutil
@@ -11,9 +11,11 @@ from random import shuffle
 import matplotlib.image  as mpimg
 import matplotlib.pyplot as plt
 
-#printing the total number of images in the dataset
+# printing the total number of images in the dataset
 print(len(os.listdir('/dataset/with_mask')))
 print(len(os.listdir('/dataset/without_mask')))
+# 1179
+# 1055
 
 # os.mkdir to create the directories
 try:
@@ -36,7 +38,7 @@ def split_data(SOURCE, TRAINING, TESTING, SPLIT_SIZE):
 	train_images = all_images[:splitting_index]
 	test_images = all_images[splitting_index:]
 
-	#copy training images
+	# copy training images
 	for img in train_images:
 	src = os.path.join(SOURCE, img)
 	dst = os.path.join(TRAINING, img)
@@ -45,7 +47,7 @@ def split_data(SOURCE, TRAINING, TESTING, SPLIT_SIZE):
 	else:
 	    shutil.copyfile(src, dst)
 
-	#copy testing images
+	# copy testing images
 	for img in test_images:
 	src = os.path.join(SOURCE, img)
 	dst = os.path.join(TESTING, img)
@@ -72,6 +74,10 @@ print(len(os.listdir('/dataset/training/with-mask/')))
 print(len(os.listdir('/dataset/training/without-mask/')))
 print(len(os.listdir('/dataset/testing/with-mask/')))
 print(len(os.listdir('/dataset/testing/without-mask/')))
+# 1142
+# 986
+# 152
+# 143
 
 # model
 model = tf.keras.models.Sequential([
@@ -97,8 +103,6 @@ model = tf.keras.models.Sequential([
 ])
 
 model.compile(optimizer=RMSprop(lr=0.001), loss='binary_crossentropy', metrics=['acc'])
-
-model.summary()
 
 
 TRAINING_DIR = '/dataset/training'
@@ -137,7 +141,8 @@ validation_generator = validation_datagen.flow_from_directory(
     class_mode='binary',
     target_size=(150, 150)
 )
-
+# Found 2128 images belonging to 2 classes.
+# Found 295 images belonging to 2 classes.
 
 history = model.fit(train_generator,
                               epochs=100,
